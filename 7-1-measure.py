@@ -42,7 +42,7 @@ try:
     GPIO.output(troyka, GPIO.HIGH)
 
     ExperimentBeginning = time.time()
-    fileStr = open("../data.csv", "w")
+    fileStr = open("../data.txt", "w")
 
     m = []
     flag = 0
@@ -83,19 +83,19 @@ try:
     print("DiscretizstionFrequency: ", DiscretizstionFrequency)
     print("QuantovStep: ", QuantovStep)
 
-    fileStr = open("../settings.csv", "w")
+    fileStr = open("../settings.txt", "w")
 
-    fileStr.write(str(ExperimentDuration))
-    fileStr.write(str(Period))
-    fileStr.write(str(DiscretizstionFrequency))
-    fileStr.write(str(QuantovStep))
+    fileStr.write(str(ExperimentDuration) + "\n")
+    fileStr.write(str(Period) + "\n")
+    fileStr.write(str(DiscretizstionFrequency) + "\n")
+    fileStr.write(str(QuantovStep) + "\n")
 
 finally:
     fileStr.close()
     GPIO.output(dac, 0)
     GPIO.cleanup()
 
-    data = np.array(open("..//data.csv").read().split("\n"))
+    data = np.array(open("..//data.txt").read().split("\n"))
     data = [float(i) for i in data]
 
     plot.plot(data)
